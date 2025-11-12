@@ -12,6 +12,7 @@ export default function RootLayout() {
           <Stack.Screen name="signup" options={{ title: 'Sign Up' }} />
           <Stack.Screen name="forgot-password" options={{ title: 'Reset Password' }} />
           <Stack.Screen name="profile" options={{ title: 'Edit Profile' }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
       </AuthProvider>
     </PaperProvider>

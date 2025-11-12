@@ -16,6 +16,9 @@ export interface User {
 // Re-export auth types
 export * from './auth';
 
+// Re-export analytics types
+export * from './analytics';
+
 export interface Listing {
   id: string;
   userId: string;
@@ -73,4 +76,12 @@ export interface Conversation {
   seller?: User;
   messages?: Message[];
   lastMessage?: Message;
+}
+
+export interface SavedListing {
+  id: string;
+  userId: string;
+  listingId: string;
+  createdAt: string;
+  listing?: Listing;
 }
