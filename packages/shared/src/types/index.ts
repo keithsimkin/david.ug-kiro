@@ -13,6 +13,9 @@ export interface User {
   updatedAt: string;
 }
 
+// Re-export auth types
+export * from './auth';
+
 export interface Listing {
   id: string;
   userId: string;

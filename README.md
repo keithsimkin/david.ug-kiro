@@ -28,25 +28,59 @@ classified-marketplace/
 npm install
 ```
 
-### 2. Configure Environment Variables
+### 2. Set Up Supabase Backend
+
+**Quick Setup (Recommended):**
+
+Windows (PowerShell):
+```powershell
+.\scripts\setup-supabase.ps1
+```
+
+macOS/Linux:
+```bash
+chmod +x scripts/setup-supabase.sh
+./scripts/setup-supabase.sh
+```
+
+This will:
+- Start Supabase locally
+- Create database schema
+- Seed initial data
+- Generate TypeScript types
+- Display connection credentials
+
+**Manual Setup:**
+
+See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for detailed instructions.
+
+### 3. Configure Environment Variables
+
+After Supabase is running, copy the credentials to your environment files:
 
 #### Web Application
-Copy `packages/web/.env.example` to `packages/web/.env` and fill in your Supabase credentials:
+```bash
+cp packages/web/.env.example packages/web/.env
+```
 
+Update `packages/web/.env` with your Supabase credentials from `supabase status`:
 ```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_URL=http://localhost:54321
+VITE_SUPABASE_ANON_KEY=your_anon_key_from_supabase_status
 ```
 
 #### Mobile Application
-Copy `packages/mobile/.env.example` to `packages/mobile/.env` and fill in your Supabase credentials:
-
-```env
-EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
-EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```bash
+cp packages/mobile/.env.example packages/mobile/.env
 ```
 
-### 3. Run Development Servers
+Update `packages/mobile/.env` with your Supabase credentials:
+```env
+EXPO_PUBLIC_SUPABASE_URL=http://localhost:54321
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_from_supabase_status
+```
+
+### 4. Run Development Servers
 
 #### Web Application
 ```bash
@@ -62,12 +96,20 @@ Then use Expo Go app on your device or an emulator to view the app.
 
 ## Available Scripts
 
+### Application Scripts
 - `npm run dev:web` - Start web development server
 - `npm run dev:mobile` - Start mobile development server
 - `npm run build:web` - Build web application for production
 - `npm run build:mobile` - Build mobile application
 - `npm run lint` - Run ESLint on all packages
 - `npm run format` - Format code with Prettier
+
+### Supabase Scripts
+- `supabase start` - Start local Supabase instance
+- `supabase stop` - Stop local Supabase instance
+- `supabase status` - View connection details
+- `supabase db reset` - Reset database and reapply migrations
+- `supabase studio` - Open Supabase Studio (http://localhost:54323)
 
 ## Technology Stack
 
@@ -107,6 +149,15 @@ Then use Expo Go app on your device or an emulator to view the app.
 - Share common types and utilities in the `shared` package
 - Keep platform-specific code in respective packages
 - Write tests for critical functionality
+- Use Supabase Studio for database management and testing
+- Generate TypeScript types after schema changes: `supabase gen types typescript --local`
+
+## Documentation
+
+- [Supabase Setup Guide](./SUPABASE_SETUP.md) - Complete backend setup instructions
+- [Database Documentation](./supabase/README.md) - Schema details and API reference
+- [SQL Reference](./supabase/SQL_REFERENCE.md) - Common queries and examples
+- [Setup Instructions](./SETUP.md) - Detailed project setup guide
 
 ## License
 

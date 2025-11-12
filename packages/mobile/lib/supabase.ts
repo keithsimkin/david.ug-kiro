@@ -1,4 +1,4 @@
-import { initializeSupabase } from '@shared/lib/supabase';
+import { initializeSupabase } from '@classified-marketplace/shared';
 import Constants from 'expo-constants';
 
 const supabaseUrl = Constants.expoConfig?.extra?.supabaseUrl || process.env.EXPO_PUBLIC_SUPABASE_URL;
